@@ -13,13 +13,14 @@ from pyspark.streaming.kafka import KafkaUtils
 def sendPartition(iter):
     for record in iter:
         try:
+            log_msg = record.replace('\n', '/ \n')
             record = record.rstrip('\n')                        
-            headers = {'Content-Type': 'application/x-turtle '}
-            print('PAYLOAD_START' + str(record) + 'PAYLOAD_END')
+            headers = {'Content-Type': 'application/x-turtle '}            
+            print('PAYLOAD_START\n' + str(log_msg) + '\nPAYLOAD_END')
             results = requests.post(os.getenv('SPARQL_ENDPOINT'), record, headers=headers)
-            print('**********SENT2BLAZE**********\n ' + str(results) + '\n******************')
+            print('RESULT_PAYLOAD_START\n' + str(results).replace('\n','/ \n') + '\nRESULT_PAYLOAD_END')
         except Exception as e:
-            print('**********BLAZEERROR*****************' + str(e))
+            print('ERROR_PAYLOAD_START\n' + str(e).replace('\n', '/ \n') + '\nERROR_PAYLOAD_END')
             pass
 
 if __name__ == "__main__":
