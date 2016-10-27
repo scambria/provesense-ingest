@@ -15,7 +15,7 @@ def sendPartition(iter):
         try:
             record = record.rstrip('\n')                        
             headers = {'Content-Type': 'application/x-turtle '}
-            print('**********SENDING*********\n' + str(record))
+            print('PAYLOAD_START' + str(record) + 'PAYLOAD_END')
             results = requests.post(os.getenv('SPARQL_ENDPOINT'), record, headers=headers)
             print('**********SENT2BLAZE**********\n ' + str(results) + '\n******************')
         except Exception as e:
