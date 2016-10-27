@@ -33,7 +33,7 @@ try:
     task_ceiling = 50
     
     # produce asynchronously
-    for i in range(999999999):
+    for i in range(99):
 
         id = str(i)
         task = randint(0, len(gen_tasks) - 1)
@@ -157,7 +157,7 @@ try:
 
         print(graph_updated)
         
-        time.sleep(.005)
+        time.sleep(2)
     
     
 except Exception as e:
